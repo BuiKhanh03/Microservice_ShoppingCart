@@ -1,0 +1,6 @@
+@Tiger.Services.CouponAPI_HostAddress = http://localhost:5109
+
+GET {{Tiger.Services.CouponAPI_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
