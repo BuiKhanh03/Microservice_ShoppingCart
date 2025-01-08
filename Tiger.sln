@@ -11,7 +11,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Intergration", "Intergratio
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{F0BB1103-E220-4410-A384-04519780EFD9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tiger.Services.CouponAPI", "Tiger.Services.CouponAPI\Tiger.Services.CouponAPI.csproj", "{4ADD1A11-83B0-442F-9312-E738AF950C67}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tiger.Services.CouponAPI", "Tiger.Services.CouponAPI\Tiger.Services.CouponAPI.csproj", "{4ADD1A11-83B0-442F-9312-E738AF950C67}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tiger.Services.AuthAPI", "Tiger.Services.AuthAPI\Tiger.Services.AuthAPI.csproj", "{1B16E5B4-F143-43F6-BE05-E5D3CB11D70C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,12 +25,17 @@ Global
 		{4ADD1A11-83B0-442F-9312-E738AF950C67}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4ADD1A11-83B0-442F-9312-E738AF950C67}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4ADD1A11-83B0-442F-9312-E738AF950C67}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1B16E5B4-F143-43F6-BE05-E5D3CB11D70C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1B16E5B4-F143-43F6-BE05-E5D3CB11D70C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1B16E5B4-F143-43F6-BE05-E5D3CB11D70C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1B16E5B4-F143-43F6-BE05-E5D3CB11D70C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{4ADD1A11-83B0-442F-9312-E738AF950C67} = {F0BB1103-E220-4410-A384-04519780EFD9}
+		{1B16E5B4-F143-43F6-BE05-E5D3CB11D70C} = {F0BB1103-E220-4410-A384-04519780EFD9}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {1D5EC24F-2B11-4B32-84E8-3E95401F7452}

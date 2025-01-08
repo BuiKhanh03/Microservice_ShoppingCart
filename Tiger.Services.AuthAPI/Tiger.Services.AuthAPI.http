@@ -1,0 +1,6 @@
+@Tiger.Services.AuthAPI_HostAddress = http://localhost:5206
+
+GET {{Tiger.Services.AuthAPI_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

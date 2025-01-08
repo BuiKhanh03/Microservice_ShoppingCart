@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 
-namespace Tiger.Services.CouponAPI.Controllers
+namespace Tiger.Services.AuthAPI.Controllers
 {
     [ApiController]
     [Route("[controller]")]
