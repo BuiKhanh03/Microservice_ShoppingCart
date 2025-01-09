@@ -1,7 +1,11 @@
-using AutoMapper;
+ï»¿using AutoMapper;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
+using Microsoft.OpenApi.Models;
 using Tiger.Services.CouponAPI;
 using Tiger.Services.CouponAPI.Data;
+using Tiger.Services.CouponAPI.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -20,7 +24,36 @@ builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddSwaggerGen(option =>
+{
+    option.SwaggerDoc("v1", new OpenApiInfo { Title = "Demo API", Version = "v1" });
+    option.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+    {
+        In = ParameterLocation.Header,
+        Description = "Please enter a valid token",
+        Name = "Authorization",
+        Type = SecuritySchemeType.Http,
+        BearerFormat = "JWT",
+        Scheme = "Bearer"
+    });
+    option.AddSecurityRequirement(new OpenApiSecurityRequirement
+    {
+        {
+            new OpenApiSecurityScheme
+            {
+                Reference = new OpenApiReference
+                {
+                    Type=ReferenceType.SecurityScheme,
+                    Id="Bearer"
+                }
+            },
+            new string[]{}
+        }
+    });
+});
+
+builder.AddAppAuthentication();
+builder.Services.AddAuthentication();
 
 var app = builder.Build();
 
@@ -32,7 +65,7 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
@@ -48,7 +81,7 @@ void ApplyMigration()
         //Get service AppDbContext from ServiceProvider
         //If not found any db => throw exception
         var _db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
-        //Ki?m tra xem có migration nào ch?a ???c áp d?ng hay không.
+        //Ki?m tra xem cÃ³ migration nÃ o ch?a ???c Ã¡p d?ng hay khÃ´ng.
         if (_db.Database.GetPendingMigrations().Count() > 0)
         {
             _db.Database.Migrate();

@@ -4,6 +4,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 17.10.35004.147
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Fontend", "Fontend", "{9F5456B3-66A4-446C-9300-99680B022BB8}"
+	ProjectSection(SolutionItems) = preProject
+		Tiger.Services.CouponAPI\Program.cs = Tiger.Services.CouponAPI\Program.cs
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Gateway", "Gateway", "{50BEBDEF-743D-44E4-B860-2C153E8D0C21}"
 EndProject
@@ -13,7 +16,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{F0
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tiger.Services.CouponAPI", "Tiger.Services.CouponAPI\Tiger.Services.CouponAPI.csproj", "{4ADD1A11-83B0-442F-9312-E738AF950C67}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tiger.Services.AuthAPI", "Tiger.Services.AuthAPI\Tiger.Services.AuthAPI.csproj", "{1B16E5B4-F143-43F6-BE05-E5D3CB11D70C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tiger.Services.AuthAPI", "Tiger.Services.AuthAPI\Tiger.Services.AuthAPI.csproj", "{1B16E5B4-F143-43F6-BE05-E5D3CB11D70C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
