@@ -1,4 +1,4 @@
-namespace Tiger.Services.CouponAPI
+namespace Tiger.Services.ShoppingCartAPI
 {
     public class WeatherForecast
     {
