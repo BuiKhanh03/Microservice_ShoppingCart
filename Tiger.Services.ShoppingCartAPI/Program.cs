@@ -4,6 +4,8 @@ using Microsoft.OpenApi.Models;
 using Tiger.Services.ShoppingCartAPI.Data;
 using Tiger.Services.ProductAPI.Extensions;
 using Tiger.Services.ShoppingCartAPI;
+using Tiger.Services.ShoppingCartAPI.Service.IService;
+using Tiger.Services.ShoppingCartAPI.Service;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -18,7 +20,12 @@ IMapper mapper = MappingConfig.RegisterMaps().CreateMapper();
 builder.Services.AddSingleton(mapper);
 // AutoMapper auto scan for profiles
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
-
+builder.Services.AddScoped<IProductService, ProductService>();
+builder.Services.AddHttpClient("Product", u =>
+{
+    u.BaseAddress = new Uri(builder.Configuration["ServiceUrls:ProductAPI"]);
+    u.DefaultRequestHeaders.Add("Accept", "application/json");
+});
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
