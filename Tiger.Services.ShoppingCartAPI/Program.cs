@@ -21,9 +21,15 @@ builder.Services.AddSingleton(mapper);
 // AutoMapper auto scan for profiles
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 builder.Services.AddScoped<IProductService, ProductService>();
+builder.Services.AddScoped<ICouponService, CouponService>();
 builder.Services.AddHttpClient("Product", u =>
 {
     u.BaseAddress = new Uri(builder.Configuration["ServiceUrls:ProductAPI"]);
+    u.DefaultRequestHeaders.Add("Accept", "application/json");
+});
+builder.Services.AddHttpClient("Coupon", u =>
+{
+    u.BaseAddress = new Uri(builder.Configuration["ServiceUrls:CouponAPI"]);
     u.DefaultRequestHeaders.Add("Accept", "application/json");
 });
 builder.Services.AddControllers();

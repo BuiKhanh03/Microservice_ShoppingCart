@@ -16,12 +16,14 @@ namespace Tiger.Services.ShoppingCartAPI.Controllers
         private IMapper _mapper;
         private readonly AppDbContext _db;
         private IProductService _productService;
-        public ShoppingCartController(AppDbContext db, IMapper mapper, IProductService productService)
+        private ICouponService _couponService;
+        public ShoppingCartController(AppDbContext db, IMapper mapper, IProductService productService, ICouponService couponService)
         {
             _mapper = mapper;
             _db = db;
             this._response = new ResponseDto();
             _productService= productService;
+            _couponService = couponService;
         }
 
         [HttpGet("GetCart/{userId}")]
@@ -39,6 +41,15 @@ namespace Tiger.Services.ShoppingCartAPI.Controllers
                 foreach (var item in cart.CartDetails) {
                     item.Product = productDtos.FirstOrDefault(u => u.ProductId == item.ProductId);
                     cart.CartHeader.CartTotal += (item.Count * item.Product.Price);
+                }
+                if (!string.IsNullOrEmpty(cart.CartHeader.CouponCode))
+                {
+                    CouponDto coupon = await _couponService.GetCoupon(cart.CartHeader.CouponCode);
+                    if (coupon != null && cart.CartHeader.CartTotal > coupon.MinAmount)
+                    {
+                        cart.CartHeader.CartTotal -= coupon.DiscountAmount;
+                        cart.CartHeader.Discount = coupon.DiscountAmount;
+                    }
                 }
                 _response.Result = cart;
             }catch(Exception ex)
@@ -69,7 +80,7 @@ namespace Tiger.Services.ShoppingCartAPI.Controllers
             return _response;
         }
 
-        [HttpPost("RemoveCoupon")]
+        [HttpDelete("RemoveCoupon")]
         public async Task<object> RemoveCoupon([FromBody] CartDto cartDto)
         {
             try
